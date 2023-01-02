@@ -17,7 +17,7 @@ passw = "sElenes78"
 def firma2rec(region, proveedores, mesini, mesfin):
     login1 = r.post('https://myavance.esasacloud.com/avance/cgi-bin/e-sasa/dos?', "Corp=LORETO&password=NICOLAS&Idioma=1&origen=1&escondido=1&cmdEnviar=Enviar+Datos&basura=1", verify=False)
     login2 = r.post('https://villas.esasacloud.com/avance/cgi-bin/e-sasa/validapassc', "Ancho=1024&parb=XIUIIUAVUINUUVYUU&lstusuario=selenesm&password="+passw+"&lstregion=AOHVDPLOBL&Corp=LORETO&Idioma=1&origen=1&escondido=1&basura=On&cmdEnviar=Enviar+Datos&nombreus=SERGIO+ELENES+MACHADO+-+CONTRALOR+VDP", verify=False)
-    datadoc = "INcanaliza=0503&Emp="+region+"&Idioma=1&Mes="+mesfin+"&Ano=2022&Order=*&Cust="+proveedores+"&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesini+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=OBLPALMAR&cmdEnviar=Enviar+Datos"
+    datadoc = "INcanaliza=0503&Emp="+region+"&Idioma=1&Mes="+mesfin+"&Ano=2023&Order=*&Cust="+proveedores+"&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesini+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=OBLPALMAR&cmdEnviar=Enviar+Datos"
     pagina = r.post(urlpo, datadoc, verify=False, allow_redirects=True)
     pagina = BeautifulSoup(pagina.text,'html.parser')
     ocs = pagina.find_all(text = re.compile("OC-"))
@@ -29,7 +29,7 @@ def firma2rec(region, proveedores, mesini, mesfin):
 def firmaporoc(oc,mesfin):
     login1 = r.post('https://myavance.esasacloud.com/avance/cgi-bin/e-sasa/dos?', "Corp=LORETO&password=NICOLAS&Idioma=1&origen=1&escondido=1&cmdEnviar=Enviar+Datos&basura=1", verify=False)
     login2 = r.post('https://villas.esasacloud.com/avance/cgi-bin/e-sasa/validapassc', "Ancho=1024&parb=XIUIIUAVUINUUVYUU&lstusuario=selenesm&password="+passw+"&lstregion=AOHVDPLOBL&Corp=LORETO&Idioma=1&origen=1&escondido=1&basura=On&cmdEnviar=Enviar+Datos&nombreus=SERGIO+ELENES+MACHADO+-+CONTRALOR+VDP", verify=False)
-    datadoc = "INcanaliza=0503&Emp=TODAS&Idioma=1&Mes="+mesfin+"&Ano=2022&Order=*"+oc+"*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon=1&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=TODAS&cmdEnviar=Enviar+Datos"
+    datadoc = "INcanaliza=0503&Emp=TODAS&Idioma=1&Mes="+mesfin+"&Ano=2023&Order=*"+oc+"*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon=1&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=TODAS&cmdEnviar=Enviar+Datos"
     pagina = r.post(urlpo, datadoc, verify=False, allow_redirects=True)
     pagina = BeautifulSoup(pagina.text,'html.parser')
     ocs = pagina.find_all(text = re.compile("OC-"))
@@ -41,7 +41,7 @@ def firmaporoc(oc,mesfin):
 def firmaVDA(mesfin):
     login1 = r.post('https://myavance.esasacloud.com/avance/cgi-bin/e-sasa/dos?', "Corp=LORETO&password=NICOLAS&Idioma=1&origen=1&escondido=1&cmdEnviar=Enviar+Datos&basura=1", verify=False)
     login2 = r.post('https://villas.esasacloud.com/avance/cgi-bin/e-sasa/validapassc', "Ancho=1024&parb=XIUIIUAVUINUUVYUU&lstusuario=selenesm&password="+passw+"&lstregion=AOHVDPLOBL&Corp=LORETO&Idioma=1&origen=1&escondido=1&basura=On&cmdEnviar=Enviar+Datos&nombreus=SERGIO+ELENES+MACHADO+-+CONTRALOR+VDP", verify=False)
-    datadoc = "INcanaliza=0503&Emp=VVDANZLOR&Idioma=1&Mes="+mesfin+"&Ano=2022&Order=*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesfin+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETORLORVVDANZ&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=VVDANZLOR&cmdEnviar=Enviar+Datos"
+    datadoc = "INcanaliza=0503&Emp=VVDANZLOR&Idioma=1&Mes="+mesfin+"&Ano=2023&Order=*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesfin+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETORLORVVDANZ&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=VVDANZLOR&cmdEnviar=Enviar+Datos"
     pagina = r.post(urlpo, datadoc, verify=False, allow_redirects=True)
     pagina = BeautifulSoup(pagina.text,'html.parser')
     ocs = pagina.find_all(text = re.compile("OC-"))
@@ -53,7 +53,7 @@ def firmaVDA(mesfin):
 def firmaPalmita(mesfin):
     login1 = r.post('https://myavance.esasacloud.com/avance/cgi-bin/e-sasa/dos?', "Corp=LORETO&password=NICOLAS&Idioma=1&origen=1&escondido=1&cmdEnviar=Enviar+Datos&basura=1", verify=False)
     login2 = r.post('https://villas.esasacloud.com/avance/cgi-bin/e-sasa/validapassc', "Ancho=1024&parb=XIUIIUAVUINUUVYUU&lstusuario=selenesm&password="+passw+"&lstregion=AOHVDPLOBL&Corp=LORETO&Idioma=1&origen=1&escondido=1&basura=On&cmdEnviar=Enviar+Datos&nombreus=SERGIO+ELENES+MACHADO+-+CONTRALOR+VDP", verify=False)
-    datadoc = "INcanaliza=0503&Emp=OBLMKTPALM&Idioma=1&Mes="+mesfin+"&Ano=2022&Order=*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesfin+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=OBLMKTPALM&cmdEnviar=Enviar+Datos"
+    datadoc = "INcanaliza=0503&Emp=OBLMKTPALM&Idioma=1&Mes="+mesfin+"&Ano=2023&Order=*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesfin+"&IniYear=2022&EndDay=31&EndMon="+mesfin+"&EndYear=2022&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=OBLMKTPALM&cmdEnviar=Enviar+Datos"
     pagina = r.post(urlpo, datadoc, verify=False, allow_redirects=True)
     pagina = BeautifulSoup(pagina.text,'html.parser')
     ocs = pagina.find_all(text = re.compile("OC-"))
