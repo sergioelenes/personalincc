@@ -6,7 +6,7 @@ import time
 import re
 import urllib3
 urllib3.disable_warnings()
-from funciones import firma2rec, firmaPalmita, firmaporoc, firmaVDA, provs, links, listocs, urlpo, passw, r
+from funciones import firma2rec, firmaPalmita, firmaporoc, firmaVDA, provs, links, listocs, urlpo, r
 
 app = Flask(__name__)
 app.secret_key = "Macarenas"
