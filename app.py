@@ -22,7 +22,7 @@ def index():
 @app.route("/login", methods=['GET','POST'])
 @basic_auth.required
 def loginroute():
-        return render_template('ocs.html')
+        return render_template('ocss.html')
 
 @app.route("/oblvdpl", methods=['POST'])
 def oblvdpl():
@@ -31,13 +31,13 @@ def oblvdpl():
         for proveedor in provs:
             firma2rec('OBLPALMAR',proveedor,str(int(mesfin)-1), mesfin)
         numocs = len(links)
-        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs))   
+        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
         for link in links:
                 requests.get(str(link), verify=False, allow_redirects=True)
                 time.sleep(1)
         links.clear()
         listocs.clear()
-        return render_template('ocs.html')
+        return render_template('ocss.html')
         
 @app.route("/palmita", methods=['POST'])
 def palmita():
@@ -45,13 +45,13 @@ def palmita():
         mesfin = request.form['mes_final']
         firmaPalmita(mesfin)
         numocs = len(links)
-        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs))   
+        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
         for link in links:
                 requests.get(str(link), verify=False, allow_redirects=True)
                 time.sleep(1)
         links.clear()
         listocs.clear()
-        return render_template('ocs.html')
+        return render_template('ocss.html')
         
 
 @app.route("/vda", methods=['POST'])
@@ -60,13 +60,13 @@ def vdata():
         mesfin = request.form['mes_final']
         firmaVDA(mesfin)
         numocs = len(links)
-        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs))   
+        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
         for link in links:
                 requests.get(str(link), verify=False, allow_redirects=True)
                 time.sleep(1)
         links.clear()
         listocs.clear()
-        return render_template('ocs.html')
+        return render_template('ocss.html')
 
 @app.route("/poroc", methods=['POST'])
 def poroc():
@@ -74,14 +74,32 @@ def poroc():
         oc = request.form['numoc']
         mesfin = request.form['mes_final']
         firmaporoc(oc,mesfin)
-        flash('Se autorizó la '+str(listocs)+'')
+        flash('Se autorizó la '+str(listocs)+'','ocs')
         for link in links:
                 requests.get(str(link), verify=False, allow_redirects=True)
                 time.sleep(1)
         links.clear()
         listocs.clear()
-        return render_template('ocs.html')
+        return render_template('ocss.html')
 
+@app.route("/cambiacontra", methods=['GET','POST'])
+@basic_auth.required
+def cambiacontra():
+        if request.method == 'POST':
+                passwnew = request.form['nwpass']
+                if passwnew == '':
+                        passwd_confirmation = open('la_linfomana.txt', 'r')
+                        passw = passwd_confirmation.read()
+                        passwd_confirmation.close()
+                        flash(f' el password actual es "  {passw}  "','contra')
+                else:
+                        with open('la_linfomana.txt', 'w') as f:
+                                f.write(passwnew)
+                        passwd_confirmation = open('la_linfomana.txt', 'r')
+                        passw = passwd_confirmation.read()
+                        passwd_confirmation.close()
+                        flash(f' el password se a modificado correctamente a "  {passw}  "','contra')
+                return render_template('ocss.html')
 
 
 

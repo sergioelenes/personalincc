@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<p class="lead text"> Autorizaciones de Ordenes de Compra</p>
+    
+    <div class="container-fluid">
+      <div class="row p-2">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class="card border-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><span class="badge bg-dark">Hotel VDPL</span></h5>
+                <p class="card-text">Autorización OCS recurrentes.</p>
+                  <form action="/oblvdpl" method="POST">
+                      <input type="text" name="mes_final" placeholder="Periodo">
+                      <button type="submit" class="btn btn-dark">Autorizar</button>
+                </form>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class="card border-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><span class="badge bg-dark">Palmita Market</span></h5>
+                <p class="card-text">Autorización OCS Totales.</p>
+                <form action="/palmita" method="POST">
+                  <input type="text" name="mes_final" placeholder="Periodo">
+                  <button type="submit" class="btn btn-dark">Autorizar</button>
+                </form>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row p-2">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class="card border-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><span class="badge bg-dark">Hotel VDPL</span></h5>
+                <p class="card-text">OCs Especificas.</p>
+                <form action="/poroc" method="POST">
+                  <input type="text" name="numoc" placeholder="#deOC">
+                  <input type="number" name="mes_final" placeholder="Periodo">
+                  <button type="submit" class="btn btn-dark">Autorizar</button>
+                </form>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <div class="card border-light mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><span class="badge bg-dark">viajes Danzante</span></h5>
+                <p class="card-text">Autorización OCS Totales.</p>
+                <form action="/vda" method="POST">
+                  <input type="text" name="mes_final" placeholder="Periodo">
+                  <button type="submit" class="btn btn-dark">Autorizar</button>
+                </form>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+
+      {% with messages = get_flashed_messages(category_filter=["ocs"]) %}
+      {% if messages %}
+      {% for message in messages %}
+      <p>{{message}}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    
+      <p class="lead text"> Actualización de Contraseña</p>
+      <div class="container-fluid">
+        <div class="row p-2">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+              <div class="card border-light mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><span class="badge bg-dark">Cambia contraseña</span></h5>
+                  <form action="/cambiacontra" method="POST">
+                    <input type="text" name="nwpass" placeholder="nueva contraseña">
+                    <button type="submit" class="btn btn-dark">Actualizar</button>
+                  </form>
+                  {% with messages = get_flashed_messages(category_filter=["contra"]) %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p>{{message}}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>  
+      </div>
+{% endblock %}

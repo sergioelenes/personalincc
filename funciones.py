@@ -12,7 +12,10 @@ provs = ["A1190*", "A3888*", "A1855*", "A0201*","A3074*", "A6590*", "A0185*", "A
 links = []
 listocs=[]
 urlpo = 'https://villas.esasacloud.com/avance/cgi-bin/e-sasa/PO'
-passw = "sElenes91"
+
+readfile = open('la_linfomana.txt', 'r')
+passw= readfile.read()
+readfile.close()
 
 def firma2rec(region, proveedores, mesini, mesfin):
     login1 = r.post('https://myavance.esasacloud.com/avance/cgi-bin/e-sasa/dos?', "Corp=LORETO&password=NICOLAS&Idioma=1&origen=1&escondido=1&cmdEnviar=Enviar+Datos&basura=1", verify=False)
