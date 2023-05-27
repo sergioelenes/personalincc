@@ -69,7 +69,7 @@ def firmaPalmita(mesfin):
     datadoc = "INcanaliza=0503&Emp=OBLMKTPALM&Idioma=1&Mes="+mesfin+"&Ano=2023&Order=*&Cust=*&Item=*&Curr=.&pedpro=*&Inilin=1&Endlin=999&Orderby=01&Status=01&Autor=04&IniDay=1&IniMon="+mesfin+"&IniYear=2023&EndDay=31&EndMon="+mesfin+"&EndYear=2023&FlagDate=1&fpago=0&prio=0&cualobs=0&sinlimite=on&VoyI=1&Opcion=3&Reg=LORETOOBLCONSOLID&Voy=1&Num99=0&Num2=0&Usu=LORETOselenesm&Emp=OBLMKTPALM&cmdEnviar=Enviar+Datos"
     pagina = r.post(urlpo, datadoc, verify=False, allow_redirects=True)
     pagina = BeautifulSoup(pagina.text,'html.parser')
-    ocs = pagina.find_all(text = re.compile("OC-"))
+    ocs = pagina.find_all(text = re.compile("CO-"))
     for oc in ocs:
         listocs.append(oc)    
     ulinks = pagina.find_all("a", href=re.compile(r"POautoriza?"))
