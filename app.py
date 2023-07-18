@@ -6,7 +6,7 @@ import time
 import re
 import urllib3
 urllib3.disable_warnings()
-from funciones import firma2rec, firmaPalmita, firmaporoc, firmaVDA, provs, links, listocs, urlpo, r
+from funciones import firma2rec, firmaPalmita, firmaporoc, firmaVDA, oblservices, ocs_cdgolf, provsvdpl, provsservices, provscdg, links, listocs, urlpo, r
 
 app = Flask(__name__)
 app.secret_key = "Macarenas"
@@ -28,7 +28,7 @@ def loginroute():
 def oblvdpl():
     if request.method == 'POST':
         mesfin = request.form['mes_final']
-        for proveedor in provs:
+        for proveedor in provsvdpl:
             firma2rec('OBLPALMAR',proveedor,str(int(mesfin)-1), mesfin)
         numocs = len(links)
         flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
@@ -75,6 +75,36 @@ def poroc():
         mesfin = request.form['mes_final']
         firmaporoc(oc,mesfin)
         flash('Se autorizó la '+str(listocs)+'','ocs')
+        for link in links:
+                requests.get(str(link), verify=False, allow_redirects=True)
+                time.sleep(1)
+        links.clear()
+        listocs.clear()
+        return render_template('ocss.html')
+
+@app.route("/oblservices", methods=['POST'])
+def oblservicess():
+    if request.method == 'POST':
+        mesfin = request.form['mes_final']
+        for proveedor in provsservices:
+            oblservices(mesfin, proveedor)
+        numocs = len(links)
+        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
+        for link in links:
+                requests.get(str(link), verify=False, allow_redirects=True)
+                time.sleep(1)
+        links.clear()
+        listocs.clear()
+        return render_template('ocss.html')
+    
+@app.route("/cdgolf", methods=['POST'])
+def cdgolf():
+    if request.method == 'POST':
+        mesfin = request.form['mes_final']
+        for proveedor in provscdg:
+            ocs_cdgolf(mesfin, proveedor)
+        numocs = len(links)
+        flash('Se autorizaron '+str(numocs)+' Ordenes de Compras, Se autorizaron: '+str(listocs),'ocs')   
         for link in links:
                 requests.get(str(link), verify=False, allow_redirects=True)
                 time.sleep(1)
