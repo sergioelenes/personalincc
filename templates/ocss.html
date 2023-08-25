@@ -109,7 +109,7 @@
       {% endif %}
       {% endwith %}
     
-      <p class="lead text"><span class="badge bg-dark"> Actualización de Contraseña:</span></p>
+      <p class="lead text"><span class="badge bg-dark"> Actualización de Datos:</span></p>
       <div class="container-fluid">
         <div class="row p-2">
           <div class="col-sm-6 mb-3 mb-sm-0">
@@ -132,6 +132,28 @@
               </div>
             </div>  
           </div>
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="shadow p-3 mb-5 bg-body rounded">
+              <div class="card border-light mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><span class="badge bg-dark">Actualizar Lista Provs Rec.</span></h5>
+                  <form action="/addprovs" method="POST">
+                    <input type="text" name="newprov" placeholder="Nuevo Proveedor">
+                    <button type="submit" class="btn btn-dark">Agregar</button>
+                  </form>
+                  <p></p>
+                  <form action="/remprovs" method="POST">
+                    <input type="text" name="remprovs" placeholder="Eliminar Proveedor">
+                    <button type="submit" class="btn btn-dark">Eliminar</button>
+                  </form>
+                  {% with messages = get_flashed_messages(category_filter=["provs"]) %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p>{{message}}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
         </div>  
       </div>
+      
 {% endblock %}

@@ -131,6 +131,32 @@ def cambiacontra():
                         flash(f' el password se a modificado correctamente a "  {passw}  "','contra')
                 return render_template('ocss.html')
 
+@app.route("/addprovs", methods=['GET','POST'])
+@basic_auth.required
+def addprovs():
+        if request.method == 'POST':
+                if request.form['newprov'] == "":
+                        pass
+                elif request.form['newprov'] != "":
+                        provsvdpl.append(request.form['newprov'])
+                
+                flash(f' listado de proveedores:  {provsvdpl}','provs')
+                return render_template('ocss.html')
+
+@app.route("/remprovs", methods=['GET','POST'])
+@basic_auth.required
+def remprovs():
+        if request.method == 'POST':
+                if request.form['remprovs'] == "":
+                        pass
+                elif request.form['remprovs'] != "":
+                        provsvdpl.remove(request.form['remprovs'])
+                
+                flash(f' listado de proveedores:  {provsvdpl}','provs')
+                return render_template('ocss.html')
+        
+
+
 
 
 
