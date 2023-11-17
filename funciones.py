@@ -8,7 +8,7 @@ urllib3.disable_warnings()
 
 r = requests.Session()
 
-provsvdpl = ["A1190*", "A3888*", "A1855*", "A0201*","A3074*", "A6590*", "A0185*", "A3713*", "A0007*", "A0308*", "A3599*", "A0411*", "A3551*", "A2914*","A3004*", "C1002*", "D0099*", "A0739*", "D1178*", "A0176*", "A0465*", "XXX*"]
+
 provsservices = ["D0099"]
 provscdg = ["A3004", "D0099"]
 links = []
